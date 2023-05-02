@@ -12,7 +12,7 @@ const Footer: NextPage<Props> = ({}) => {
           <h2 className='text-white text-2xl md:mb-5 mb-3'>Logo</h2>
           <p className='text-gray-300'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
-            nulla, consequuntur.
+            nulla, consequuntur...
           </p>
           <div className='flex gap-2 mt-4 flex-wrap'>
             <div className='bg-slate-500 w-fit py-2 px-3 flex items-center gap-2 text-gray-200 rounded-md cursor-pointer'>
