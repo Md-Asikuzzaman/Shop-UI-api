@@ -6,9 +6,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
 
 // import required modules
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper';
+import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper';
 
 interface Props {}
 
@@ -20,22 +21,24 @@ const Slider: NextPage<Props> = ({}) => {
       pagination={{
         clickable: true,
       }}
+      loop={true}
       mousewheel={true}
       keyboard={true}
-      modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+      autoplay={{ delay: 2000 }}
+      modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
       className='mb-5'
     >
       <SwiperSlide>
-        <div className='h-80 bg-red-200'></div>
+        <div className='h-80 bg-red-200'>1111</div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className='h-80 bg-red-200'></div>
+        <div className='h-80 bg-red-200'>2222</div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className='h-80 bg-red-200'></div>
+        <div className='h-80 bg-red-200'>3333</div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className='h-80 bg-red-200'></div>
+        <div className='h-80 bg-red-200'>4444</div>
       </SwiperSlide>
     </Swiper>
   );

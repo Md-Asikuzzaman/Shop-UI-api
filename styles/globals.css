@@ -5,7 +5,7 @@
 .container {
   @apply max-w-7xl w-full mx-auto px-3;
 }
-
+.bg-footer,
 .bg-head {
   background-color: #0f3460;
 }

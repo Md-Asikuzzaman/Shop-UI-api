@@ -1,3 +1,5 @@
+import BottomInfo from '@/components/footer/BottomInfo';
+import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import Flash from '@/components/home/Flash';
 import Hero from '@/components/home/Hero';
@@ -13,6 +15,8 @@ const Home: NextPage<Props> = ({}) => {
       <Hero />
       <Flash />
       <Product />
+      <BottomInfo />
+      <Footer />
     </>
   );
 };
