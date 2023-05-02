@@ -27,7 +27,7 @@ const Navbar: NextPage<Props> = ({}) => {
         {/* category lists */}
 
         {category ? (
-          <div className='bg-white absolute top-20 w-60 shadow-lg'>
+          <div className='bg-white absolute top-20 w-60 shadow-lg z-10'>
             <ul>
               <li className='px-3 py-2 hover:bg-slate-50'>fashion</li>
               <li className='px-3 py-2 hover:bg-slate-50'>mobile</li>

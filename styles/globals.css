@@ -7,5 +7,13 @@
 }
 
 .bg-head {
-    background-color: #0f3460;
+  background-color: #0f3460;
+}
+
+.text-tomato {
+  color: #f45867;
+}
+
+.bg-tomato {
+  background-color: #f45867;
 }
