@@ -36,7 +36,7 @@ const Search: NextPage<Props> = ({}) => {
             href={'/cart'}
             className='h-10 w-10 bg-gray-200 rounded-full grid place-content-center relative'
           >
-            <span className='absolute p-2 h-6 bg-orange-700 rounded-full text-white grid place-content-center -translate-y-1/2 top-0 right-0'>
+            <span className='absolute p-2 h-6 bg-rose-500 rounded-full text-white grid place-content-center -translate-y-1/2 top-0 right-0 text-xs'>
               7
             </span>
             <GiBeachBag className='text-lg' />

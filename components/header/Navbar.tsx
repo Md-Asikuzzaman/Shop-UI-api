@@ -3,6 +3,10 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import { BsChevronDown } from 'react-icons/bs';
 import { RxDashboard } from 'react-icons/rx';
+import { GiClothes, GiRunningShoe } from 'react-icons/gi';
+import { AiFillGift, AiOutlineLaptop } from 'react-icons/ai';
+import { FaMobileAlt } from 'react-icons/fa';
+import { BiHeadphone } from 'react-icons/bi';
 
 interface Props {}
 
@@ -15,27 +19,42 @@ const Navbar: NextPage<Props> = ({}) => {
         {/* categories */}
         <div
           onClick={() => setCategory((prev) => !prev)}
-          className='flex items-center gap-2 cursor-pointer bg-slate-100 py-2 px-4 rounded-md'
+          className='flex items-center gap-3 cursor-pointer bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded-md'
         >
           <RxDashboard />
-          <h4 className='flex items-center gap-1'>
+          <h4 className='flex items-center gap-2'>
             Categories
             <BsChevronDown />
           </h4>
         </div>
 
         {/* category lists */}
-
         {category ? (
           <div className='bg-white absolute top-20 w-60 shadow-lg z-10'>
             <ul>
-              <li className='px-3 py-2 hover:bg-slate-50'>fashion</li>
-              <li className='px-3 py-2 hover:bg-slate-50'>mobile</li>
-              <li className='px-3 py-2 hover:bg-slate-50'>cars</li>
-              <li className='px-3 py-2 hover:bg-slate-50'>cars</li>
-              <li className='px-3 py-2 hover:bg-slate-50'>cars</li>
-              <li className='px-3 py-2 hover:bg-slate-50'>cars</li>
-              <li className='px-3 py-2 hover:bg-slate-50'>cars</li>
+              <li className='flex items-center gap-4 px-4 py-2 hover:bg-rose-50'>
+                <AiOutlineLaptop className='text-xl text-gray-500' /> Laptop
+              </li>
+
+              <li className='flex items-center gap-4 px-4 py-2 hover:bg-rose-50'>
+                <FaMobileAlt className='text-xl text-gray-500' /> Mobile
+              </li>
+
+              <li className='flex items-center gap-4 px-4 py-2 hover:bg-rose-50'>
+                <BiHeadphone className='text-xl text-gray-500' /> Head Phone
+              </li>
+
+              <li className='flex items-center gap-4 px-4 py-2 hover:bg-rose-50'>
+                <AiFillGift className='text-xl text-gray-500' /> Gift
+              </li>
+
+              <li className='flex items-center gap-4 px-4 py-2 hover:bg-rose-50'>
+                <GiClothes className='text-xl text-gray-500' /> Fashion
+              </li>
+
+              <li className='flex items-center gap-4 px-4 py-2 hover:bg-rose-50'>
+                <GiRunningShoe className='text-xl text-gray-500' /> Shoes
+              </li>
             </ul>
           </div>
         ) : (

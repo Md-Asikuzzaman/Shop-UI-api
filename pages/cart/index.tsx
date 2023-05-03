@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SingleCart from '@/components/cart/SingleCart';
 import { NextPage } from 'next';
+import { BsFillCartCheckFill } from 'react-icons/bs';
 import { IoMdCart } from 'react-icons/io';
 
 interface Props {}
@@ -31,7 +32,9 @@ const Cart: NextPage<Props> = ({}) => {
                 <span>Total Price: </span>
                 <h3 className='font-semibold text-rose-500'>$5,000.00</h3>
               </div>
-              <button>Check out</button>
+              <button className='flex items-center justify-center gap-2 bg-rose-400 hover:bg-rose-500 py-2 px-5 rounded-md w-full text-white mt-5 duration-200'>
+                <BsFillCartCheckFill /> Check out
+              </button>
             </div>
           </div>
         </div>
