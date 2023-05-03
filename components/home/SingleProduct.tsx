@@ -6,7 +6,7 @@ interface Props {}
 const SingleProduct: NextPage<Props> = ({}) => {
   return (
     <>
-      <div className='bg-white relative'>
+      <div className='bg-white relative shadow-sm rounded-md'>
         <span className='absolute top-3 left-2 bg-rose-400 py-1 px-4 rounded-full text-sm text-white'>
           10% Off
         </span>

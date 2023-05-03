@@ -9,7 +9,7 @@ const Footer: NextPage<Props> = ({}) => {
     <footer className='py-7 bg-footer'>
       <div className='container grid lg:grid-cols-4 md:grid-cols-2 gap-7'>
         <div>
-          <h2 className='text-white text-2xl md:mb-5 mb-3'>Logo</h2>
+          <img className='w-20 md:mb-5 mb-3' src='/logo.png' alt='logo' />
           <p className='text-gray-300'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
             nulla, consequuntur...

@@ -10,6 +10,7 @@ import 'swiper/css/autoplay';
 
 // import required modules
 import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper';
+import Image from 'next/image';
 
 interface Props {}
 
@@ -29,16 +30,19 @@ const Slider: NextPage<Props> = ({}) => {
       className='mb-5'
     >
       <SwiperSlide>
-        <div className='h-80 bg-red-200'>1111</div>
+        <div className='h-96 bg-red-200'>
+          <Image src='/slider/slider1.webp' fill alt='slider1' />
+        </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className='h-80 bg-red-200'>2222</div>
+        <div className='h-96 bg-red-200'>
+          <Image src='/slider/slider2.webp' fill alt='slider1' />
+        </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className='h-80 bg-red-200'>3333</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className='h-80 bg-red-200'>4444</div>
+        <div className='h-96 bg-red-200'>
+          <Image src='/slider/slider3.webp' fill alt='slider1' />
+        </div>
       </SwiperSlide>
     </Swiper>
   );

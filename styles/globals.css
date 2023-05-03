@@ -17,3 +17,8 @@
 .bg-tomato {
   background-color: #f45867;
 }
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  @apply text-rose-400;
+}

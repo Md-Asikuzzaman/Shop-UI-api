@@ -13,7 +13,7 @@ const Product: NextPage<Props> = ({}) => {
           <AiFillShop className='text-tomato text-2xl' /> All Products
         </h2>
 
-        <div className='grid lg:grid-cols-4 md:grid-cols-2 gap-5'>
+        <div className='grid lg:grid-cols-4 md:grid-cols-2 gap-7'>
           <SingleProduct />
           <SingleProduct />
           <SingleProduct />
