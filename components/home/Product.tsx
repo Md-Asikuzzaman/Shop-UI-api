@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import { AiFillShop } from 'react-icons/ai';
-import { BsPlus, BsStarFill } from 'react-icons/bs';
 import SingleProduct from './SingleProduct';
 
 interface Props {}
@@ -14,15 +13,6 @@ const Product: NextPage<Props> = ({}) => {
         </h2>
 
         <div className='grid lg:grid-cols-4 md:grid-cols-2 gap-7'>
-          <SingleProduct />
-          <SingleProduct />
-          <SingleProduct />
-          <SingleProduct />
-          <SingleProduct />
-          <SingleProduct />
-          <SingleProduct />
-          <SingleProduct />
-          <SingleProduct />
           <SingleProduct />
         </div>
       </div>
