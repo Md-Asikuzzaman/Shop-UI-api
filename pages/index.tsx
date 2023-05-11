@@ -7,8 +7,7 @@ import Flash from '@/components/home/Flash';
 
 interface Props {}
 
-const Home: NextPage<Props> = (data) => {
-  console.log('TCL: data', data);
+const Home: NextPage<Props> = ({}) => {
   return (
     <Layout>
       <Hero />

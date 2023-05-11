@@ -15,7 +15,7 @@ export default async function handler(
 
   if (req.method == 'GET') {
     try {
-      const products = await Product.find({});
+      const products = await Product.find({}).sort({ createdAt: 'desc' });
       res.status(200).json({ products });
     } catch (error) {
       res.status(500).json({ message: 'something went wrong!!!' });
