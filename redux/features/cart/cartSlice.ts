@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 interface ProductType {
   _id: string;
@@ -22,23 +23,16 @@ interface DataType {
 // const getFromLocalStorage = (key: string) => {
 //   if (!key || typeof window === 'undefined') {
 //     return '';
-//   } else {
-//     return localStorage.getItem(key);
 //   }
-// };
 
-// const setFromLocalStorage = (key: string, val: any) => {
-//   if (!key || typeof window === 'undefined') {
-//     return '';
-//   } else {
-//     return localStorage.setItem(key, val);
-//   }
+//   return localStorage.getItem(key);
 // };
 
 const initialState: DataType = {
-  cartItems: /* getFromLocalStorage('cartItems')
-    ? JSON.parse(getFromLocalStorage('cartItems') || '{}')
-    : */ [],
+  cartItems:
+    typeof window !== 'undefined' && localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems')!)
+      : [],
   cartTotalQuantity: 0,
   cartTotalPrice: 0,
 };
@@ -54,12 +48,20 @@ const cartSlice = createSlice({
 
       if (itemIndex >= 0) {
         state.cartItems[itemIndex].cartQuantity += 1;
+        // toast message
+        toast.success(`${action.payload.title} quantity is increased.`, {
+          position: 'bottom-right',
+        });
       } else {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
+        // toast message
+        toast.success(`${action.payload.title} is added to cart.`, {
+          position: 'bottom-right',
+        });
       }
 
-      // setFromLocalStorage('cartItems', JSON.stringify(state.cartItems));
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
 
     removeFromCart: (state, action: PayloadAction<ProductType>) => {
@@ -67,6 +69,13 @@ const cartSlice = createSlice({
         (item) => item._id !== action.payload._id
       );
       state.cartItems = updatedCartItems;
+
+      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+
+      // toast message
+      toast.warning(`${action.payload.title} is removed from cart.`, {
+        position: 'bottom-right',
+      });
     },
 
     decreaseCart: (state, action: PayloadAction<ProductType>) => {
@@ -76,11 +85,23 @@ const cartSlice = createSlice({
 
       if (state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= 1;
+
+        // toast message
+        toast.warning(`${action.payload.title} quantity is decreased.`, {
+          position: 'bottom-right',
+        });
       } else if (state.cartItems[itemIndex].cartQuantity == 1) {
         const updatedCartItems = state.cartItems.filter(
           (item) => item._id !== action.payload._id
         );
         state.cartItems = updatedCartItems;
+
+        localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+
+        // toast message
+        toast.warning(`${action.payload.title} is removed from cart.`, {
+          position: 'bottom-right',
+        });
       }
     },
   },
