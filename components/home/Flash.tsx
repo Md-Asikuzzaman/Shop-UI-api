@@ -19,8 +19,8 @@ const Flash: NextPage<Props> = ({}) => {
     <section className='py-5 bg-gray-100'>
       <div className='container'>
         <h2 className='flex items-center gap-2 text-xl font-semibold mb-4'>
-          <BsFillLightningChargeFill className='text-tomato text-2xl' /> Flash
-          Deals
+          <BsFillLightningChargeFill className='text-tomato text-2xl' /> New
+          Arrivals
         </h2>
 
         <Swiper

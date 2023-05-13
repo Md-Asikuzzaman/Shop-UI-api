@@ -3,10 +3,14 @@ import SingleCart from '@/components/cart/SingleCart';
 import { NextPage } from 'next';
 import { BsFillCartCheckFill } from 'react-icons/bs';
 import { IoMdCart } from 'react-icons/io';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks';
 
 interface Props {}
 
 const Cart: NextPage<Props> = ({}) => {
+  const dispatch = useAppDispatch();
+  const products = useAppSelector((state) => state.cart.cartItems);
+  console.log('TCL: products', products);
   return (
     <Layout>
       <section className='py-10 bg-gray-100'>
@@ -17,11 +21,11 @@ const Cart: NextPage<Props> = ({}) => {
 
           <div className='flex min-h-[50vh] gap-10'>
             <div className='flex-grow flex flex-col gap-3'>
-              <SingleCart />
-              <SingleCart />
-              <SingleCart />
-              <SingleCart />
-              <SingleCart />
+              {products.length > 0
+                ? products.map((product) => (
+                    <SingleCart key={product._id} product={product} />
+                  ))
+                : 'No Product in Cart'}
             </div>
             <div className='bg-white shadow-sm p-5 rounded-md shrink-0 h-fit min-w-[22rem]'>
               <h2 className='flex items-center gap-2 text-xl font-semibold mb-4 text-rose-500 border-b border-gray-200 pb-2'>

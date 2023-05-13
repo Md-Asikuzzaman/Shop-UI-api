@@ -3,9 +3,17 @@ import { HiUser } from 'react-icons/hi';
 import { GiBeachBag } from 'react-icons/gi';
 import { BsSearch } from 'react-icons/bs';
 import Link from 'next/link';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks';
+import { useEffect } from 'react';
+
 interface Props {}
 
 const Search: NextPage<Props> = ({}) => {
+  const dispatch = useAppDispatch();
+  const data = useAppSelector((state) => state.cart);
+
+  // console.log('TCL: data', data.cartItems);
+
   return (
     <div className='bg-white sticky top-0 z-50'>
       <div className='container flex justify-between items-center  gap-28 py-5'>
@@ -37,7 +45,7 @@ const Search: NextPage<Props> = ({}) => {
             className='h-10 w-10 bg-gray-200 rounded-full grid place-content-center relative'
           >
             <span className='absolute p-2 h-6 bg-rose-500 rounded-full text-white grid place-content-center -translate-y-1/2 top-0 right-0 text-xs'>
-              7
+              {data.cartItems.length}
             </span>
             <GiBeachBag className='text-lg' />
           </Link>
