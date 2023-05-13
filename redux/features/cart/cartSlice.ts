@@ -29,10 +29,10 @@ interface DataType {
 // };
 
 const initialState: DataType = {
-  cartItems:
+  cartItems: /*
     typeof window !== 'undefined' && localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems')!)
-      : [],
+      : */ [],
   cartTotalQuantity: 0,
   cartTotalPrice: 0,
 };
