@@ -1,3 +1,6 @@
+import dbConnect from '@/lib/dbConnect';
+import User from '@/models/User';
+import { compare } from 'bcryptjs';
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
@@ -10,21 +13,39 @@ export default NextAuth({
       credentials: {},
 
       async authorize(credentials, req) {
-        const { username, password } = credentials as {
-          username: string;
+        await dbConnect();
+
+        const { email, password } = credentials as {
+          email: string;
           password: string;
         };
 
-        if (username != 'asik' && password != 'asik') {
-          return null;
+        // CHECK EXISTING USER
+        var result = await User.findOne({
+          email: email,
+        });
+        if (!result) throw new Error('User does not exist!');
+
+        // COMPARE PASSWORD
+        const checkPassword = await compare(password, result.password);
+        if (!checkPassword) throw new Error('Invalid credentials!');
+
+        const user = {
+          id: result?._id,
+          name: result?.username,
+          email: result?.email,
+        };
+
+        if (user) {
+          return user;
         } else {
-          return { id: 'as', username: username, password: password };
+          return null;
         }
       },
     }),
   ],
 
   pages: {
-    signIn: '/account/register',
+    signIn: '/account/login',
   },
 });

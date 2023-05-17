@@ -4,12 +4,15 @@ import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { MdEmail, MdPerson, MdPhone } from 'react-icons/md';
 import { useFormik, FormikProps } from 'formik';
-import { signIn } from 'next-auth/react';
 import { registerValidation } from '@/lib/registerValidation';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 interface Props {}
 
 const Register: NextPage<Props> = ({}) => {
+  const router = useRouter();
   // PASSWORD SHOW/HIDE SETTINGS
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -22,9 +25,7 @@ const Register: NextPage<Props> = ({}) => {
     setShowConfirmPassword((prev) => !prev);
   };
 
-  // FORM VALIDATIONS
-
-  // Form validation
+  // FORM VALIDATION
   interface DataType {
     username: string;
     email: string;
@@ -45,16 +46,20 @@ const Register: NextPage<Props> = ({}) => {
     validate: registerValidation,
 
     onSubmit: async (values) => {
-      const status = await signIn('credentials', {
-        redirect: false,
-        email: values.email,
-        password: values.password,
-        callbackUrl: '/',
-      });
+      try {
+        const res = await axios.post('/api/register', values);
+
+        if (res.status === 201) {
+          toast.success('Account created successfully!');
+          router.replace('/account/login');
+        }
+      } catch (error: any) {
+        toast.error(error?.response.data.message);
+      }
+
+      formik.resetForm();
     },
   });
-
-  console.log(formik?.errors);
 
   return (
     <div className='min-h-screen bg-gray-300 flex items-center justify-center px-3'>
@@ -79,11 +84,11 @@ const Register: NextPage<Props> = ({}) => {
             <MdPerson className='text-rose-500' />
           </div>
         </div>
-          <p className='text-xs mt-1 text-rose-500'>
-            {formik.errors.username && formik.touched.username
-              ? formik.errors.username
-              : null}
-          </p>
+        <p className='text-xs mt-1 text-rose-500'>
+          {formik.errors.username && formik.touched.username
+            ? formik.errors.username
+            : null}
+        </p>
 
         <div className='relative mt-5'>
           <label className='absolute -top-2 left-5 bg-white px-1 text-sm text-gray-500'>
@@ -201,7 +206,7 @@ const Register: NextPage<Props> = ({}) => {
           className='bg-rose-400 w-full rounded-full py-2 text-white hover:bg-rose-500 duration-300'
           type='submit'
         >
-          Login Account
+          Create Account
         </button>
 
         <p className='text-sm text-gray-600 text-center mt-8'>

@@ -4,17 +4,12 @@ import { GiBeachBag } from 'react-icons/gi';
 import { BsSearch } from 'react-icons/bs';
 import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks';
-import { signIn } from 'next-auth/react';
 
 interface Props {}
 
 const Search: NextPage<Props> = ({}) => {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.cart);
-
-  const handleLogin = () => {
-    signIn();
-  };
 
   return (
     <div className='bg-white sticky top-0 z-50'>
@@ -39,9 +34,11 @@ const Search: NextPage<Props> = ({}) => {
 
         {/* options */}
         <div className='flex gap-4'>
-          <div className='h-10 w-10 bg-gray-200 rounded-full grid place-content-center'>
-            <HiUser onClick={handleLogin} className='text-lg' />
-          </div>
+          <Link href={'/user'}>
+            <div className='h-10 w-10 bg-gray-200 rounded-full grid place-content-center'>
+              <HiUser className='text-lg' />
+            </div>
+          </Link>
           <Link
             href={'/cart'}
             className='h-10 w-10 bg-gray-200 rounded-full grid place-content-center relative'
