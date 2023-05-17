@@ -1,12 +1,30 @@
 import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 export default NextAuth({
   providers: [
     // OAuth authentication providers...
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID!,
-      clientSecret: process.env.GOOGLE_SECRET!,
+    CredentialsProvider({
+      name: 'Credentials',
+
+      credentials: {},
+
+      async authorize(credentials, req) {
+        const { username, password } = credentials as {
+          username: string;
+          password: string;
+        };
+
+        if (username != 'asik' && password != 'asik') {
+          return null;
+        } else {
+          return { id: 'as', username: username, password: password };
+        }
+      },
     }),
   ],
+
+  pages: {
+    signIn: '/account/register',
+  },
 });

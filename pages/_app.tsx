@@ -5,6 +5,7 @@ import { Poppins } from 'next/font/google';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SessionProvider } from 'next-auth/react';
 
 const poppins = Poppins({
   weight: ['400', '700'],
@@ -12,13 +13,18 @@ const poppins = Poppins({
   subsets: ['latin'],
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
-    <Provider store={store}>
-      <main className={poppins.className}>
-        <ToastContainer />
-        <Component {...pageProps} />
-      </main>
-    </Provider>
+    <SessionProvider session={session}>
+      <Provider store={store}>
+        <main className={poppins.className}>
+          <ToastContainer />
+          <Component {...pageProps} />
+        </main>
+      </Provider>
+    </SessionProvider>
   );
 }
