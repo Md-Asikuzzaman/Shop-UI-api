@@ -11,8 +11,8 @@ const Home: NextPage<Props> = ({}) => {
   return (
     <Layout>
       <Hero />
-      <Flash />
       <Product />
+      <Flash />
       <BottomInfo />
     </Layout>
   );

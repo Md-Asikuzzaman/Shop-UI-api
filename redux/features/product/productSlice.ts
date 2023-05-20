@@ -28,10 +28,20 @@ const initialState: DataType = {
 // FETCH PRODUCTS
 export const fetchProducts = createAsyncThunk(
   'product/fetchProducts',
-  async () => {
-    const res = await axios.get('/api/product');
-    return res.data.products;
+  async (data: any) => {
     try {
+      const res = await axios.get('/api/product');
+
+      if (data) {
+        const filteredProducts = res.data.products.filter(
+          (product: ProductType) =>
+            product.title.toLowerCase().includes(data.toLowerCase())
+        );
+
+        return filteredProducts;
+      } else {
+        return res.data.products;
+      }
     } catch (error: any) {
       throw new Error(error);
     }
